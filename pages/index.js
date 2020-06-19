@@ -2,21 +2,19 @@ import Head from "next/head";
 import Link from "next/link";
 import { getAllPosts } from "../lib/db";
 
-
-
 export async function getServerSideProps(context) {
   let posts = await getAllPosts();
-  // JSON.parse(data);
-  // console.log(data.posts[1]);
+  console.log(posts)
+  let postsArray = JSON.parse(posts);
+
   return {
     props: {
-      posts
+      postsArray,
     },
   };
 }
 
-export default function Home({ posts }) {
-
+export default function Home({ postsArray }) {
   return (
     <div className="container">
       <Head>
@@ -25,16 +23,14 @@ export default function Home({ posts }) {
       </Head>
 
       <main>
-      {console.log(posts)}
-      {/* {posts.map((post, index) => (
-          <div key={`${index}_${post.heading}`}>
-
-            <h1>{post.heading}</h1>
-            <p>{post.content}</p>
-
+        {postsArray.map((post) => (
+          <div key={post.id}>
+            <Link href="/posts/[id]" as={`/posts/${post.id}`}>
+              <a>{post.heading}</a>
+            </Link>
+            {/* <p>{post.content}</p> */}
           </div>
-        ))} */}
-        <h1>Home page</h1>
+        ))}
       </main>
     </div>
   );
