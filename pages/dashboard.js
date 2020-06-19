@@ -18,6 +18,18 @@ export default function Dashboard() {
         <input type="number" name="id" />
         <input type="submit" value="წაშლა" />
       </form>
+
+      <h2>პოსტის რედაქტირება</h2>
+      <form method="POST" action="api/put">
+        <label>მიუთითეთ პოსტის id რომლის რედაქტირებაც გსურთ</label>
+        <input type="number" name="id" />
+        <label htmlFor="heading">სათაური</label>
+        <input type="text" name="heading" className="blog-heading" />
+        <label htmlFor="content">ბლოგ-პოსტი</label>
+        <textarea name="content"></textarea>
+        <input type="submit" value="რედაქტირება" />
+      </form>
+
       <style jsx>{`
         div{
           display:block;
