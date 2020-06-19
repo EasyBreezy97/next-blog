@@ -1,4 +1,6 @@
+import Head from 'next/head';
 import { getAllPosts } from "../../lib/db";
+
 
 export async function getServerSideProps(context) {
   let posts = await getAllPosts();
@@ -23,6 +25,9 @@ export default function Post({ selectedPost }) {
   }
   return (
     <section>
+      <Head>
+        <title>{selectedPost[0].heading}</title>
+      </Head>
       {selectedPost.map((post) => (
         <div key={post.id}>
           <h1>{post.heading}</h1>
