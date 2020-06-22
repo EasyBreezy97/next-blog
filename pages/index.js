@@ -1,10 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
+import Layout from "../components/layout";
 import { getAllPosts } from "../lib/db";
 
 export async function getServerSideProps(context) {
   let posts = await getAllPosts();
-  console.log(posts)
+  console.log(posts);
   let postsArray = JSON.parse(posts);
 
   return {
@@ -16,12 +17,12 @@ export async function getServerSideProps(context) {
 
 export default function Home({ postsArray }) {
   return (
-    <div className="container">
+    <Layout>
       <Head>
         <title>Next blog</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
+        {/* <link rel="icon" href="/favicon.ico" /> */}
+      </Head>
       <main>
         {postsArray.map((post) => (
           <div key={post.id}>
@@ -32,6 +33,6 @@ export default function Home({ postsArray }) {
           </div>
         ))}
       </main>
-    </div>
+    </Layout>
   );
 }
