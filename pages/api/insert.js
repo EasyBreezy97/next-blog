@@ -4,7 +4,7 @@ import { insertPost } from "../../lib/db";
 
 export default (req, res) => {
   let { heading, content } = req.body;
-
+  console.log(heading,content)
   if (!heading || !content) {
     res.status(405).json({
       msg: "ERROR, either heading or content is not specified",

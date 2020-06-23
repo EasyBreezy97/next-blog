@@ -3,6 +3,7 @@ import Link from "next/link";
 import Layout from "../components/layout";
 import { getAllPosts } from "../lib/db";
 
+
 export async function getServerSideProps(context) {
   let posts = await getAllPosts();
   console.log(posts);

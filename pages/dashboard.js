@@ -1,13 +1,29 @@
+// import ReactQuill from 'react-quill'; // ES6
+// import 'react-quill/dist/quill.snow.css';
+import {useState} from 'react'
+import dynamic from 'next/dynamic';
+
+const Editor = dynamic(
+  () => import('../components/quill').then(mod => mod.default),
+  { ssr: false }
+)
+
 export default function Dashboard() {
+  const [value, setValue] = useState('');
+
+
+
   return (
     <div>
       <h1>ადმინი</h1>
       <h2>პოსტის შექმნა</h2>
+
       <form method="POST" action="api/insert">
         <label htmlFor="heading">სათაური</label>
         <input type="text" name="heading" className="blog-heading" />
         <label htmlFor="content">ბლოგ-პოსტი</label>
-        <textarea name="content"></textarea>
+        <Editor/>
+
         <input type="submit" value="შექმნა" />
       </form>
 
@@ -26,13 +42,13 @@ export default function Dashboard() {
         <label htmlFor="heading">სათაური</label>
         <input type="text" name="heading" className="blog-heading" />
         <label htmlFor="content">ბლოგ-პოსტი</label>
-        <textarea name="content"></textarea>
+        <Editor/>
         <input type="submit" value="რედაქტირება" />
       </form>
 
       <style jsx>{`
-        div{
-          display:block;
+        div {
+          display: block;
           margin: 0 auto;
         }
         input[type="text"],
@@ -42,7 +58,7 @@ export default function Dashboard() {
         input,
         label {
           display: block;
-          margin-bottom:0.5rem;
+          margin-bottom: 0.5rem;
         }
         form {
           margin-bottom: 4rem;

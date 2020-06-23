@@ -1,6 +1,8 @@
 import Head from "next/head";
 import { getAllPosts } from "../../lib/db";
 import Layout from "../../components/layout";
+import parse from 'html-react-parser';
+
 
 export async function getServerSideProps(context) {
   let posts = await getAllPosts();
@@ -26,7 +28,7 @@ export default function Post({ selectedPost }) {
         {selectedPost.map((post) => (
           <div key={post.id}>
             <h1>{post.heading}</h1>
-            <p>{post.content}</p>
+            <div>{parse(post.content)}</div>
           </div>
         ))}
       </section>
