@@ -55,6 +55,7 @@ Editor.modules = {
  * See https://quilljs.com/docs/formats/
  */
 Editor.formats = [
+  "background",
   "header",
   "font",
   "size",
@@ -62,6 +63,8 @@ Editor.formats = [
   "italic",
   "underline",
   "strike",
+  "strikethrough",
+  "direction",
   "blockquote",
   "list",
   "bullet",
