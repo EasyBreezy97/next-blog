@@ -10,11 +10,11 @@ export async function getServerSideProps(context) {
 
   let parsedPosts = JSON.parse(posts);
 
-  console.log('ctx query::',context.query)
+  // console.log('ctx query::',context.query)
 
   let selectedPost = parsedPosts.filter((post) => post.heading.split(" ").join("-") === context.query.id);
 
-  console.log('selected post:',selectedPost)
+  // console.log('selected post:',selectedPost)
 
   return {
     props: {
@@ -29,8 +29,9 @@ export default function Post({ selectedPost }) {
     <Layout>
       <section>
         <Head>
-          <title>asdasd</title>
-          {/* <title>{selectedPost[0].heading}</title> */}
+          <title>{selectedPost[0].heading}</title>
+          <meta name="description" content={selectedPost[0].description}></meta>
+          <meta name="robots" content="index, follow"></meta>
         </Head>
         {selectedPost.map((post) => (
           <div key={post.id}>

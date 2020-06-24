@@ -9,7 +9,6 @@ function Editor() {
   const handleChange = (html) => {
     setEditorHtml(html);
 
-    console.log(html);
   };
 
 

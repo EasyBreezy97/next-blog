@@ -1,0 +1,13 @@
+.main article img {
+  max-width: 350px;
+  margin: 0.5rem;
+  display: inline;
+
+}
+.main article{
+  margin:1.5rem 0;
+  position: relative;
+}
+.main article>a {
+  font-size: 1.7rem;
+}

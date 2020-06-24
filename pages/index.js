@@ -2,6 +2,9 @@ import Head from "next/head";
 import Link from "next/link";
 import Layout from "../components/layout";
 import { getAllPosts } from "../lib/db";
+import parse from "html-react-parser";
+import styles from './index.module.css';
+
 
 export async function getServerSideProps(context) {
   let posts = await getAllPosts();
@@ -20,22 +23,24 @@ export default function Home({ postsArray }) {
     <Layout>
       <Head>
         <title>Next blog</title>
-
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <main>
-        {console.log(postsArray)}
+      <main className={styles.main}>
+        {/* {console.log(postsArray)} */}
         {postsArray.map((post) => (
-          <div key={post.id}>
+          <article key={post.id}>
             <Link
               href={`/posts/[heading]`}
               as={`/posts/${post.heading.split(" ").join("-")}`}
             >
               <a>{post.heading}</a>
             </Link>
-            {/* <p>{post.content}</p> */}
-          </div>
+            {parse(post.content).slice(0,3)}
+
+          </article>
         ))}
+
+
       </main>
     </Layout>
   );

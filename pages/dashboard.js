@@ -23,7 +23,8 @@ export default function Dashboard() {
         <input type="text" name="heading" className="blog-heading" />
         <label htmlFor="content">ბლოგ-პოსტი</label>
         <Editor/>
-
+        <label htmlFor="description" >პოსტის აღწერა</label>
+        <input type="text"  name="description" className="blog-description" />
         <input type="submit" value="შექმნა" />
       </form>
 
@@ -43,6 +44,8 @@ export default function Dashboard() {
         <input type="text" name="heading" className="blog-heading" />
         <label htmlFor="content">ბლოგ-პოსტი</label>
         <Editor/>
+        <label htmlFor="description">პოსტის აღწერა</label>
+        <input type="text" name="description" className="blog-description" />
         <input type="submit" value="რედაქტირება" />
       </form>
 

@@ -9,7 +9,7 @@ export default function Layout({ children }) {
         <title>Next blog</title>
         <meta name="description" content="150 words" />
         <meta name="copyright" content="company name" />
-        <meta name="language" content="ES" />
+        <meta name="language" content="GE" />
       </Head>
       <div className={styles.container}>{children}</div>
     </div>
