@@ -17,7 +17,28 @@ const insertImage = (e) => {
   }
 };
 
-const CustomButton = () => <span onMouseDown={insertImage}>IMG</span>;
+const CustomButton = () => {
+  return (
+    <span onMouseDown={insertImage}>
+      ლინკი სურათად (მონიშნეთ ლინკი და დააჭირეთ)
+      <style jsx>{`
+        span {
+          text-align: center;
+          border: 1px solid;
+          padding: 0.4rem 0.7rem;
+          background: #339933;
+          color: #fff;
+          cursor:pointer;
+          display:block;
+          margin:1rem 0;
+        }
+        span:hover{
+          opacity:0.9;
+        }
+      `}</style>
+    </span>
+  );
+};
 
 function Editor() {
   const [value, setValue] = useState("");

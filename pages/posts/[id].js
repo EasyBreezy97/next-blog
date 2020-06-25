@@ -1,9 +1,7 @@
 import Head from "next/head";
 import { getAllPosts } from "../../lib/db";
 import Layout from "../../components/layout";
-import parse from 'html-react-parser';
-
-
+import parse from "html-react-parser";
 
 export async function getServerSideProps(context) {
   let posts = await getAllPosts();
@@ -12,7 +10,9 @@ export async function getServerSideProps(context) {
 
   // console.log('ctx query::',context.query)
 
-  let selectedPost = parsedPosts.filter((post) => post.heading.split(" ").join("-") === context.query.id);
+  let selectedPost = parsedPosts.filter(
+    (post) => post.heading.split(" ").join("-") === context.query.id,
+  );
 
   // console.log('selected post:',selectedPost)
 
@@ -24,7 +24,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function Post({ selectedPost }) {
-
   return (
     <Layout>
       <section>
@@ -34,11 +33,25 @@ export default function Post({ selectedPost }) {
           <meta name="robots" content="index, follow"></meta>
         </Head>
         {selectedPost.map((post) => (
-          <div key={post.id}>
+          <div className="selected-post-container" key={post.id}>
             <h1>{post.heading}</h1>
             <div>{parse(post.content)}</div>
           </div>
         ))}
+
+        <style jsx>
+          {`
+            h1 {
+              font-size: 1.8rem;
+              color: #0070f3;
+              text-align:center;
+            }
+            .selected-post-container > h1,
+            .selected-post-container div {
+              margin: 1.5rem 0;
+            }
+          `}
+        </style>
       </section>
     </Layout>
   );

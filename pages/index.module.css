@@ -1,16 +1,28 @@
 .main article p img {
   max-height: 90px;
   float: right;
+  max-width:100%;
+
 }
 
 .main article {
   margin: 4rem auto;
   position: relative;
   width: 70%;
-  border: 2px solid;
   padding: 1rem;
   min-height: 220px;
+  -webkit-box-shadow: 3px 3px 5px 6px #eee;
+  -moz-box-shadow: 3px 3px 5px 6px #eee;
+  box-shadow: 3px 3px 5px 6px #eee;
 
+}
+.main article:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.2s all;
+}
+.main article:not(:hover){
+  transition: 0.2s all;
 }
 .main article > a {
   font-size: 1.7rem;

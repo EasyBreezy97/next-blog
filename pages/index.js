@@ -3,8 +3,7 @@ import Link from "next/link";
 import Layout from "../components/layout";
 import { getAllPosts } from "../lib/db";
 import parse from "html-react-parser";
-import styles from './index.module.css';
-
+import styles from "./index.module.css";
 
 export async function getServerSideProps(context) {
   let posts = await getAllPosts();
@@ -28,19 +27,17 @@ export default function Home({ postsArray }) {
       <main className={styles.main}>
         {/* {console.log(postsArray)} */}
         {postsArray.map((post) => (
-          <article className="clearfix" key={post.id}>
-            <Link
-              href={`/posts/[heading]`}
-              as={`/posts/${post.heading.split(" ").join("-")}`}
-            >
+          <Link
+            href={`/posts/[heading]`}
+            as={`/posts/${post.heading.split(" ").join("-")}`}
+          >
+            <article className="clearfix" key={post.id}>
               <a>{post.heading}</a>
-            </Link>
-            {parse(post.content).slice(0,3)}
 
-          </article>
+              {parse(post.content).slice(0, 3)}
+            </article>
+          </Link>
         ))}
-
-
       </main>
     </Layout>
   );

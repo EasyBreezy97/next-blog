@@ -1,8 +1,20 @@
+@import url("//cdn.web-fonts.ge/fonts/bpg-nostalgia/css/bpg-nostalgia.min.css");
+
+
+body{
+  font-family: "BPG Nostalgia", sans-serif;
+  font-size: 1.1rem;
+}
+
 a {
   color: #0070f3;
   text-decoration: none;
 }
 
-.main div p{
-  color:red
+img{
+  max-width: 100%;
+}
+
+p:first-line{
+  text-indent:1rem;
 }
