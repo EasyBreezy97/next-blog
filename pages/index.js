@@ -31,10 +31,11 @@ export default function Home({ postsArray }) {
             href={`/posts/[heading]`}
             as={`/posts/${post.heading.split(" ").join("-")}`}
           >
-            <article className="clearfix" key={post.id}>
+            <article key={post.id}>
               <a>{post.heading}</a>
 
               {parse(post.content).slice(0, 3)}
+              <div className="post-id">პოსტი: {post.id}</div>
             </article>
           </Link>
         ))}
