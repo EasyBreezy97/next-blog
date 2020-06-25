@@ -1,13 +1,27 @@
-.main article img {
-  max-width: 350px;
-  margin: 0.5rem;
-  display: inline;
+.main article p img {
+  max-height: 90px;
+  float: right;
+}
+
+.main article {
+  margin: 4rem auto;
+  position: relative;
+  width: 70%;
+  border: 2px solid;
+  padding: 1rem;
+  min-height: 220px;
 
 }
-.main article{
-  margin:1.5rem 0;
-  position: relative;
-}
-.main article>a {
+.main article > a {
   font-size: 1.7rem;
+  display: block;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.clearfix{
+  overflow:auto;
 }

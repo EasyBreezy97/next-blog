@@ -1,6 +1,24 @@
 import { useState } from "react";
 import ReactQuill from "react-quill";
 
+const insertImage = (e) => {
+  let imgLink = `<img src="${window.getSelection().toString()}" alt="img"/>`;
+  console.log(imgLink);
+  let closestFormAttr = e.target.closest("form").getAttribute("action");
+  console.log(document.querySelectorAll(".ql-editor"));
+  let nodes = document.querySelectorAll(".ql-editor");
+  if (closestFormAttr === "api/insert") {
+    console.log(nodes[0]);
+    nodes[0].innerHTML += imgLink;
+  } else {
+    console.log(nodes[1]);
+
+    nodes[1].innerHTML += imgLink;
+  }
+};
+
+const CustomButton = () => <span onMouseDown={insertImage}>IMG</span>;
+
 function Editor() {
   const [value, setValue] = useState("");
   const [editorHtml, setEditorHtml] = useState("");
@@ -8,12 +26,10 @@ function Editor() {
 
   const handleChange = (html) => {
     setEditorHtml(html);
-
   };
-
-
   return (
     <>
+      <CustomButton />
       <ReactQuill
         theme={theme}
         value={editorHtml}
@@ -32,7 +48,8 @@ function Editor() {
  */
 Editor.modules = {
   toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
+    // [{ container: "img" }]
+    [({ header: "1" }, { header: "2" }, { font: [] })],
     [{ size: [] }],
     ["bold", "italic", "underline", "strike", "blockquote"],
     [
@@ -48,6 +65,10 @@ Editor.modules = {
     // toggle to add extra line breaks when pasting HTML:
     matchVisual: false,
   },
+
+  // handlers: {
+  //   insertImage: insertImage,
+  // },
 };
 /*
  * Quill editor formats

@@ -28,7 +28,7 @@ export default function Home({ postsArray }) {
       <main className={styles.main}>
         {/* {console.log(postsArray)} */}
         {postsArray.map((post) => (
-          <article key={post.id}>
+          <article className="clearfix" key={post.id}>
             <Link
               href={`/posts/[heading]`}
               as={`/posts/${post.heading.split(" ").join("-")}`}
