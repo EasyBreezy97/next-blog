@@ -16,11 +16,11 @@ export default function Dashboard() {
         <h2>პოსტის შექმნა</h2>
         <form method="POST" className="insert-form" action="api/insert">
           <label htmlFor="heading">სათაური</label>
-          <input type="text" name="heading" className="blog-heading" />
+          <input type="text" name="heading" className="blog-heading" required />
           <label htmlFor="content">ბლოგ-პოსტი</label>
           <Editor />
           <label htmlFor="description">პოსტის აღწერა</label>
-          <input type="text" name="description" className="blog-description" />
+          <input type="text" name="description" className="blog-description" required />
           <input className="btn btn-green" type="submit" value="შექმნა" />
         </form>
       </div>
@@ -29,7 +29,7 @@ export default function Dashboard() {
         <h2>პოსტის წაშლა</h2>
         <form method="POST" action="api/delete">
           <label>მიუთითეთ პოსტის id რომლის წაშლაც გსურთ</label>
-          <input type="number" name="id" />
+          <input type="number" name="id" required />
           <input className="btn btn-red" type="submit" value="წაშლა" />
         </form>
       </div>
@@ -38,13 +38,13 @@ export default function Dashboard() {
         <h2>პოსტის რედაქტირება</h2>
         <form method="POST" className="put-form" action="api/put">
           <label>მიუთითეთ პოსტის id რომლის რედაქტირებაც გსურთ</label>
-          <input type="number" name="id" />
+          <input type="number" name="id" required />
           <label htmlFor="heading">სათაური</label>
-          <input type="text" name="heading" className="blog-heading" />
+          <input type="text" name="heading" className="blog-heading" required/>
           <label htmlFor="content">ბლოგ-პოსტი</label>
           <Editor />
           <label htmlFor="description">პოსტის აღწერა</label>
-          <input type="text" name="description" className="blog-description" />
+          <input type="text" name="description" className="blog-description" required/>
           <input className="btn btn-green" type="submit" value="რედაქტირება" />
         </form>
       </div>
