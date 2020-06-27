@@ -7,12 +7,16 @@ const insertImage = (e) => {
   let closestFormAttr = e.target.closest("form").getAttribute("action");
   console.log(document.querySelectorAll(".ql-editor"));
   let nodes = document.querySelectorAll(".ql-editor");
+  let selectedText = "";
+
   if (closestFormAttr === "api/insert") {
     console.log(nodes[0]);
     nodes[0].innerHTML += imgLink;
+    selectedText = window.getSelection();
+
+    console.log(selectedText);
   } else {
     console.log(nodes[1]);
-
     nodes[1].innerHTML += imgLink;
   }
 };
@@ -28,12 +32,12 @@ const CustomButton = () => {
           padding: 0.4rem 0.7rem;
           background: #339933;
           color: #fff;
-          cursor:pointer;
-          display:block;
-          margin:1rem 0;
+          cursor: pointer;
+          display: block;
+          margin: 1rem 0;
         }
-        span:hover{
-          opacity:0.9;
+        span:hover {
+          opacity: 0.9;
         }
       `}</style>
     </span>

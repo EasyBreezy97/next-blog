@@ -1,8 +1,10 @@
-.main article p img {
-  max-height: 90px;
-  float: right;
-  max-width:100%;
+.main article {
+  min-width: 30rem;
+  max-width: 55rem;
+}
 
+.post-heading{
+  font-size: 1.8rem;
 }
 
 .main article {
@@ -14,26 +16,16 @@
   -webkit-box-shadow: 3px 3px 5px 6px #eee;
   -moz-box-shadow: 3px 3px 5px 6px #eee;
   box-shadow: 3px 3px 5px 6px #eee;
-
 }
-.main article:hover{
+.main article:hover {
   cursor: pointer;
   transform: scale(1.05);
   transition: 0.2s all;
 }
-.main article:not(:hover){
+.main article:not(:hover) {
   transition: 0.2s all;
 }
-.main article > a {
-  font-size: 1.7rem;
-  display: block;
-}
 
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-.clearfix{
-  overflow:auto;
+.main article .post-heading{
+  font-size: 1.5rem;
 }

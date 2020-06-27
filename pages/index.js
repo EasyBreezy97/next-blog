@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../components/layout";
@@ -18,27 +19,44 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home({ postsArray }) {
+  useEffect(() => {
+    imageHandler();
+  }, []);
+  const imageHandler = () => {
+    const blogs = document.querySelectorAll(".single-blog");
+
+    for (let i = 0; i < blogs.length; ++i) {
+      if (blogs[i].getElementsByTagName("img").length !== 0) {
+        blogs[i].classList.add("with-image");
+      }
+    }
+  };
   return (
     <Layout>
       <Head>
         <title>Next blog</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main className={styles.main}>
-        {/* {console.log(postsArray)} */}
         {postsArray.map((post) => (
           <Link
             href={`/posts/[heading]`}
             as={`/posts/${post.heading.split(" ").join("-")}`}
+            key={post.id}
           >
-            <article key={post.id}>
-              <a>{post.heading}</a>
-
-              {parse(post.content).slice(0, 3)}
-              <div className="post-id">პოსტი: {post.id}</div>
+            <article className="single-blog">
+              <div>
+                <a className="post-heading">{post.heading}</a>
+                {parse(post.content).slice(0, 3)}
+                <div className="post-id">პოსტი: {post.id}</div>
+              </div>
             </article>
           </Link>
         ))}
+        <style jsx>{`
+          .post-heading {
+            font-size: 1.3rem;
+          }
+        `}</style>
       </main>
     </Layout>
   );

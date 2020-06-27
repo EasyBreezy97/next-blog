@@ -1,5 +1,3 @@
-// import ReactQuill from 'react-quill'; // ES6
-// import 'react-quill/dist/quill.snow.css';
 import { useState } from "react";
 import dynamic from "next/dynamic";
 
