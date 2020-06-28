@@ -46,7 +46,7 @@ export default function Home({ postsArray }) {
             <article className="single-blog">
               <div>
                 <a className="post-heading">{post.heading}</a>
-                {parse(post.content).slice(0, 3)}
+                {parse(post.content) || parse(post.content).slice(0, 3)}
                 <div className="post-id">პოსტი: {post.id}</div>
               </div>
             </article>
