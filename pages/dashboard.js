@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
+import jwt from "jsonwebtoken";
+import { useRouter } from 'next/router'
 
 const Editor = dynamic(
   () => import("../components/quill").then((mod) => mod.default),
@@ -7,10 +9,44 @@ const Editor = dynamic(
 );
 
 export default function Dashboard() {
-  const [value, setValue] = useState("");
+  const router = useRouter()
+
+  const verifyToken = async () => {
+
+    const token = new URL(document.location).searchParams.get("token");
+      let decodedToken = jwt.decode(token, { complete: true });
+      console.log(decodedToken)
+      localStorage.setItem("auth_token", token);
+
+      let currentTime = new Date().getTime();
+
+      if(!decodedToken){
+        router.push("/login")
+        localStorage.removeItem("auth_token");
+        return;
+      }
+
+      if ( decodedToken.payload.exp * 1000 < currentTime) {
+        router.push("/login")
+        localStorage.removeItem("auth_token");
+      }
+    };
+
+
+
+  useEffect(() => {
+    verifyToken();
+  }, []);
+
+
+  const logout = () => {
+    localStorage.removeItem("auth_token")
+    router.push("/login")
+  }
 
   return (
     <div className="dashboard-container">
+      {/* {console.log(await fetch("/api/login")) ;} */}
       <h1>ადმინი</h1>
       <div className="create-post">
         <h2>პოსტის შექმნა</h2>
@@ -20,7 +56,12 @@ export default function Dashboard() {
           <label htmlFor="content">ბლოგ-პოსტი</label>
           <Editor />
           <label htmlFor="description">პოსტის აღწერა</label>
-          <input type="text" name="description" className="blog-description" required />
+          <input
+            type="text"
+            name="description"
+            className="blog-description"
+            required
+          />
           <input className="btn btn-green" type="submit" value="შექმნა" />
         </form>
       </div>
@@ -40,13 +81,20 @@ export default function Dashboard() {
           <label>მიუთითეთ პოსტის id რომლის რედაქტირებაც გსურთ</label>
           <input type="number" name="id" required />
           <label htmlFor="heading">სათაური</label>
-          <input type="text" name="heading" className="blog-heading" required/>
+          <input type="text" name="heading" className="blog-heading" required />
           <label htmlFor="content">ბლოგ-პოსტი</label>
           <Editor />
           <label htmlFor="description">პოსტის აღწერა</label>
-          <input type="text" name="description" className="blog-description" required/>
+          <input
+            type="text"
+            name="description"
+            className="blog-description"
+            required
+          />
           <input className="btn btn-green" type="submit" value="რედაქტირება" />
         </form>
+
+        <button onClick={logout} className="btn btn-red">გასვლა ადმინიდან</button>
       </div>
 
       <style jsx>{`
@@ -81,11 +129,11 @@ export default function Dashboard() {
         .delete-post,
         .edit-post {
           -webkit-box-shadow: 3px 3px 5px 6px #eee;
-          -moz-box-shadow:    3px 3px 5px 6px #eee;
-          box-shadow:         3px 3px 5px 6px #eee;
+          -moz-box-shadow: 3px 3px 5px 6px #eee;
+          box-shadow: 3px 3px 5px 6px #eee;
           padding: 1rem;
           margin: 1.2rem 0;
-          border-radius:1rem;
+          border-radius: 1rem;
         }
         .insert-form .put-form {
           border: 1px solid;
