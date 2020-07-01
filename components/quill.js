@@ -3,20 +3,20 @@ import ReactQuill from "react-quill";
 
 const insertImage = (e) => {
   let imgLink = `<img src="${window.getSelection().toString()}" alt="img"/>`;
-  console.log(imgLink);
+  // console.log(imgLink);
   let closestFormAttr = e.target.closest("form").getAttribute("action");
-  console.log(document.querySelectorAll(".ql-editor"));
+  // console.log(document.querySelectorAll(".ql-editor"));
   let nodes = document.querySelectorAll(".ql-editor");
   let selectedText = "";
 
   if (closestFormAttr === "api/insert") {
-    console.log(nodes[0]);
+    // console.log(nodes[0]);
     nodes[0].innerHTML += imgLink;
     selectedText = window.getSelection();
 
-    console.log(selectedText);
+    // console.log(selectedText);
   } else {
-    console.log(nodes[1]);
+    // console.log(nodes[1]);
     nodes[1].innerHTML += imgLink;
   }
 };

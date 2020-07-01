@@ -15,7 +15,7 @@ export default function Dashboard() {
 
     const token = new URL(document.location).searchParams.get("token");
       let decodedToken = jwt.decode(token, { complete: true });
-      console.log(decodedToken)
+      // console.log(decodedToken)
       localStorage.setItem("auth_token", token);
 
       let currentTime = new Date().getTime();
