@@ -9,21 +9,25 @@
 
 .main article {
   margin: 4rem auto;
+  /* padding: 0 0.5rem; */
   position: relative;
   width: 70%;
   padding: 1rem;
   min-height: 220px;
-  -webkit-box-shadow: 3px 3px 5px 6px #eee;
-  -moz-box-shadow: 3px 3px 5px 6px #eee;
-  box-shadow: 3px 3px 5px 6px #eee;
+  border-top: 1px solid #e8eae9;
+  border-bottom: 1px solid #e8eae9;
+  font-size: 1rem;
 }
 .main article:hover {
   cursor: pointer;
-  transform: scale(1.05);
-  transition: 0.2s all;
+  background-color: #fafafa;
+  transition: 0.15s all;
+  border-color: #ccc;
 }
 .main article:not(:hover) {
-  transition: 0.2s all;
+  transition: 0.15s all;
+  border-color: #e8eae9;
+
 }
 
 .main article .post-heading{

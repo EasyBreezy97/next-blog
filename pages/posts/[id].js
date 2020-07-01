@@ -50,6 +50,11 @@ export default function Post({ selectedPost }) {
             .selected-post-container div {
               margin: 1.5rem 0;
             }
+            img{
+              min-width:25rem;
+              max-width:100%;
+            }
+
           `}
         </style>
       </section>
