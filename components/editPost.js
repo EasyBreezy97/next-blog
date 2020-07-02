@@ -1,19 +1,42 @@
+import {useState,useEffect} from 'react';
 import dynamic from "next/dynamic";
+import axios from "axios";
 
 const Editor = dynamic(
   () => import("../components/quill").then((mod) => mod.default),
   { ssr: false },
 );
-const EditPost = ({headingsArray}) => {
+const EditPost = ({ headingsArray }) => {
+  const [chosenPost,setChosenPost] = useState(null)
+
+
+  const getPost = async (e) => {
+    try {
+      let {data} = await axios.post("api/getPost", { heading: e.target.value });
+      let heading = document.querySelector(".blog-heading");
+      let description = document.querySelector(".blog-description")
+      let quill = document.querySelector(".ql-editor")
+
+      heading.value = data.post.heading
+      description.value = data.post.description
+      quill.innerHTML  = data.post.content
+      console.log(data.post.heading)
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="edit-post">
       <h2>პოსტის რედაქტირება</h2>
       <form method="POST" className="put-form" action="api/put">
         <label>აირჩიეთ იმ პოსტის სათაური რომლის რედაქტირებაც გსურთ</label>
         {/* <input type="number" name="id" required /> */}
-        <select name="heading">
+        <select onChange={getPost} name="heading">
+          <option>აირჩიეთ იმ პოსტის სათაური რომლის რედაქტირებაც გსურთ</option>
           {headingsArray.map((result) => (
-            <option key={result.heading}>{result.heading}</option>
+            <option value={result.heading} key={result.heading}>
+              {result.heading}
+            </option>
           ))}
         </select>
 
@@ -45,9 +68,10 @@ const EditPost = ({headingsArray}) => {
           width: 99%;
           padding: 0.3rem;
         }
-        label,h2{
-          font-weight:bold;
-          text-align:center;
+        label,
+        h2 {
+          font-weight: bold;
+          text-align: center;
         }
         input,
         label {
