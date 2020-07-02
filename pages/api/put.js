@@ -1,24 +1,24 @@
-import { updatePost, hasId } from "../../lib/db";
+import { updatePost, hasHeading } from "../../lib/db";
 export default async (req, res) => {
-  let { id, heading, content, description } = req.body;
+  let { heading, content, description } = req.body;
   // console.log(req.body);
+  console.log('HEADING::',heading)
 
-  parseInt(id);
 
-  if ((!id || !heading || !content, !description)) {
+  if ( !heading[1] || !content || !description) {
     res.status(405).json({
-      msg: "all fields must be filled",
+      msg: "all headingfields must be filled",
     });
   }
-  if (await hasId(id)) {
-    await updatePost(id, heading, description, content);
+  if (await hasHeading(heading[0])) {
+    await updatePost( heading[0],heading[1], description, content);
     res.status(200).json({
-      msg: `post with id:${id} updated`,
+      msg: `post with heading:${heading[0]} updated`,
     });
   } else {
     res.status(405).json({
-      id: id,
-      msg: `ERROR ! post with id:${id} does not exists`,
+      heading: heading,
+      msg: `ERROR ! post with heading:${heading[0]} does not exists`,
     });
   }
 };

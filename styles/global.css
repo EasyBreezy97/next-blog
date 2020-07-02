@@ -19,6 +19,27 @@ body {
   font-weight: 400;
 }
 
+.btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  cursor: pointer;
+}
+.btn:active {
+  opacity: 0.8;
+  outline: none;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-green {
+  background: #339933;
+  color: #fff;
+}
+.btn-red {
+  background: #cc3333;
+  color: #fff;
+}
 a {
   color: #0070f3;
   text-decoration: none;

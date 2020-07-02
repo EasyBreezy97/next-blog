@@ -1,25 +1,26 @@
-import { deletePost, hasId } from "../../lib/db";
+import { deletePost, hasHeading } from "../../lib/db";
 
 export default async (req, res) => {
-  let id = parseInt(req.body.id);
 
-  if (!id)
+  let {heading} = req.body;
+  console.log('hediing from delete::',heading, typeof heading)
+  if (!heading)
     res.status(405).json({
-      msg: "id is not specified",
+      msg: "heading is not specified",
     });
 
-  if (await hasId(id)) {
-    deletePost(id);
+  if (await hasHeading(heading)) {
+    deletePost(heading);
 
     res.status(200).json({
-      id: id,
-      msg: `post with id:${id} is DELETED`,
+      heading: heading,
+      msg: `post with heading:${heading} is DELETED`,
     });
 
   } else {
     res.status(405).json({
-      id: id,
-      msg: `ERROR post with id:${id} does not exists`,
+      heading: heading,
+      msg: `ERROR post with heading:${heading} does not exists`,
     });
   }
 };
