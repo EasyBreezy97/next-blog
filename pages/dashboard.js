@@ -35,16 +35,16 @@ export default function Dashboard({ headingsArray }) {
 
     let currentTime = new Date().getTime();
 
-    // if(!decodedToken){
-    //   router.push("/login")
-    //   localStorage.removeItem("auth_token");
-    //   return;
-    // }
+    if(!decodedToken){
+      router.push("/login")
+      localStorage.removeItem("auth_token");
+      return;
+    }
 
-    // if ( decodedToken.payload.exp * 1000 < currentTime) {
-    //   router.push("/login")
-    //   localStorage.removeItem("auth_token");
-    // }
+    if ( decodedToken.payload.exp * 1000 < currentTime) {
+      router.push("/login")
+      localStorage.removeItem("auth_token");
+    }
   };
 
   const switchComponents = (component) => {
@@ -78,7 +78,7 @@ export default function Dashboard({ headingsArray }) {
 
       {switchComponents(component)}
 
-      <LogOut />
+      <LogOut click={logout} />
 
       <style jsx>{`
         .dashboard-container {

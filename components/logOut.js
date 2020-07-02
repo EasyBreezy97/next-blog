@@ -1,7 +1,7 @@
-const LogOut = ({logoutHandler}) => {
+const LogOut = ({click}) => {
   return (
     <div>
-      <button onClick={logoutHandler} className="btn btn-red">
+      <button onClick={click} className="btn btn-red">
         გასვლა ადმინიდან
       </button>
     </div>

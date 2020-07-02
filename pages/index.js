@@ -46,11 +46,12 @@ export default function Home({ postsArray }) {
             <article className="single-blog">
               <div>
                 <a className="post-heading">{post.heading}</a>
+                <div className="created_at">{post.created_at.split("T")[0]}</div>
+
                 {console.log(parse(post.content))}
                 {parse(post.content).length >= 1
                   ? parse(post.content).slice(0, 3)
                   : parse(post.content)}
-                <div className="post-id">პოსტი: {post.id}</div>
               </div>
             </article>
           </Link>
@@ -58,6 +59,13 @@ export default function Home({ postsArray }) {
         <style jsx>{`
           .post-heading {
             font-size: 1.3rem;
+          }
+          .created_at{
+            color:#282828;
+            margin-top:1rem;
+          }
+          .single-blog{
+            color:#777;
           }
         `}</style>
       </main>
