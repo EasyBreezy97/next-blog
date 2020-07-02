@@ -7,7 +7,6 @@ import CreatePost from "../components/createPost";
 import EditPost from "../components/editPost";
 import LogOut from "../components/logOut";
 
-
 export async function getServerSideProps() {
   let headings = await getPostHeadings();
   console.log(headings);
@@ -22,6 +21,7 @@ export async function getServerSideProps() {
 
 export default function Dashboard({ headingsArray }) {
   const router = useRouter();
+  const [component, setComponent] = useState("create");
 
   useEffect(() => {
     verifyToken();
@@ -47,6 +47,17 @@ export default function Dashboard({ headingsArray }) {
     // }
   };
 
+  const switchComponents = (component) => {
+    switch (component) {
+      case "create":
+        return <CreatePost />;
+      case "edit":
+        return <EditPost headingsArray={headingsArray} />;
+      case "delete":
+        return <DeletePost headingsArray={headingsArray} />;
+    }
+  };
+
   const logout = () => {
     localStorage.removeItem("auth_token");
     router.push("/login");
@@ -55,10 +66,19 @@ export default function Dashboard({ headingsArray }) {
   return (
     <div className="dashboard-container">
       <h1>ადმინი</h1>
-      <CreatePost />
-      <DeletePost headingsArray={headingsArray} />
-      <EditPost headingsArray={headingsArray} />
-      <LogOut logoutHandler={logout}/>
+      <button className="btn btn-green" onClick={() => setComponent("create")}>
+        პოსტის შექმნა
+      </button>
+      <button className="btn btn-red" onClick={() => setComponent("delete")}>
+        პოსტის წაშლა
+      </button>
+      <button className="btn btn-yellow" onClick={() => setComponent("edit")}>
+        პოსტის რედაქტირება
+      </button>
+
+      {switchComponents(component)}
+
+      <LogOut />
 
       <style jsx>{`
         .dashboard-container {
@@ -71,6 +91,9 @@ export default function Dashboard({ headingsArray }) {
           display: block;
           text-align: center;
           font-size: 1.7rem;
+        }
+        button {
+          margin: 0 0.5rem;
         }
       `}</style>
     </div>

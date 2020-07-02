@@ -28,7 +28,7 @@ const EditPost = ({headingsArray}) => {
           className="blog-description"
           required
         />
-        <input className="btn btn-green" type="submit" value="რედაქტირება" />
+        <input className="btn btn-yellow" type="submit" value="რედაქტირება" />
       </form>
       <style jsx>{`
         .edit-post {
