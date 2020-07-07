@@ -10,6 +10,8 @@ export default function Layout({ children }) {
         <meta name="description" content="150 words" />
         <meta name="copyright" content="company name" />
         <meta name="language" content="GE" />
+        <meta property="og:type" content="blog" />
+        <meta name="og:title" content="Next blog"/>
       </Head>
       <div className={styles.container}>{children}</div>
     </div>
