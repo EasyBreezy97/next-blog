@@ -15,39 +15,28 @@ export async function getServerSideProps(context) {
     (post) => post.heading.split(" ").join("-") === context.query.id,
   );
 
+
+  let imgRegex = /<img src\s*=\s*\\*"(.+?)\\*"\s*>/;
+  let imgLink;
+  if(selectedPost[0].content.match(imgRegex)){
+      imgLink = selectedPost[0].content.match(imgRegex)[1].split("alt")[0];
+  }else{
+    imgLink =  null;
+  }
   return {
     props: {
       selectedPost,
+      imgLink
     },
   };
 }
 
-export default function Post({ selectedPost }) {
+export default function Post({ selectedPost, imgLink }) {
+  // console.log(selectedPost)
   const [url, setUrl] = useState(null);
-  const [imgSrc, setImgSrc] = useState(null);
   useEffect(() => {
     setUrl(window.location.href);
-    // fetchImgLink()
-    // console.log(selectedPost)
-
-    fetchImgLink(selectedPost);
   }, []);
-
-  // const fetchImgLink = (selectedPost) => {
-  //   console.log(props)
-  // }
-
-  const fetchImgLink = (selectedPost) => {
-    let content = selectedPost[0].content;
-    let imgRegex = /<img src\s*=\s*\\*"(.+?)\\*"\s*>/;
-    // console.log( content.match(imgRegex).length)
-    if(content.match(imgRegex)){
-      let imgSrc = content.match(imgRegex)[1].split("alt")[0];
-      console.log(imgSrc)
-      setImgSrc(imgSrc);
-    }
-    return;
-  };
 
   return (
     <Layout>
@@ -56,10 +45,11 @@ export default function Post({ selectedPost }) {
           <title>{selectedPost[0].heading}</title>
           <meta name="description" content={selectedPost[0].description}></meta>
           <meta name="robots" content="index, follow"></meta>
-          {imgSrc && <meta name="og:image" content={imgSrc} />}
-          <meta name="og:url" content={url} />
-          <meta name="og:title" content={selectedPost[0].heading} />
-          <meta name="og:description" content={selectedPost[0].description} />
+          {imgLink && <meta name="og:image" content={imgLink} />}
+          <meta property="og:url" content={url} />
+          <meta property="og:title" content={selectedPost[0].heading} />
+          <meta property="og:description" content={selectedPost[0].description} />
+
         </Head>
         {selectedPost.map((post) => (
           <div className="selected-post-container" key={post.id}>

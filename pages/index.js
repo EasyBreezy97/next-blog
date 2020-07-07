@@ -8,17 +8,26 @@ import styles from "./index.module.css";
 
 export async function getServerSideProps(context) {
   let posts = await getAllPosts();
-  console.log(posts);
+  // console.log(posts);
   let postsArray = JSON.parse(posts);
+
+  let imgRegex = /<img src\s*=\s*\\*"(.+?)\\*"\s*>/;
+  let imgLink;
+  if(postsArray[0].content.match(imgRegex)){
+      imgLink = postsArray[0].content.match(imgRegex)[1].split("alt")[0];
+  }else{
+    imgLink =  null;
+  }
 
   return {
     props: {
       postsArray,
+      imgLink
     },
   };
 }
 
-export default function Home({ postsArray }) {
+export default function Home({ postsArray,imgLink }) {
   useEffect(() => {
     imageHandler();
   }, []);
@@ -32,7 +41,8 @@ export default function Home({ postsArray }) {
     }
   };
   return (
-    <Layout>
+    <Layout imgLink={imgLink}>
+      {/* {console.log(imgLink)} */}
       <Head>
         <title>Next blog</title>
       </Head>
