@@ -11,6 +11,8 @@ export async function getServerSideProps(context) {
   // console.log(posts);
   let postsArray = JSON.parse(posts);
 
+  let {host} =  context.req.headers;
+
   let imgRegex = /<img src\s*=\s*\\*"(.+?)\\*"\s*>/;
   let imgLink;
   if (postsArray[0].content.match(imgRegex)) {
@@ -26,11 +28,12 @@ export async function getServerSideProps(context) {
     props: {
       postsArray,
       imgLink,
+      host
     },
   };
 }
 
-export default function Home({ postsArray, imgLink }) {
+export default function Home({ postsArray, imgLink,host }) {
   useEffect(() => {
     imageHandler();
   }, []);
@@ -45,7 +48,6 @@ export default function Home({ postsArray, imgLink }) {
   };
   return (
     <Layout imgLink={imgLink}>
-      {console.log(imgLink)}
       <Head>
         <title>Next js simple blog for search engine optimisation</title>
         <meta
@@ -53,13 +55,14 @@ export default function Home({ postsArray, imgLink }) {
           content="Blog builded on nextjs. react server side renderer"
         />
         <meta name="copyright" content="company name" />
-        <meta property="og:type" content="website" />
         <meta property="og:title" content="Next blog" />
         <meta
           property="og:description"
           content="Blog builded on nextjs. react server side renderer"
         />
         {imgLink && <meta property="og:image" content = {imgLink} />}
+        <meta property="og:url" content={host} />
+
       </Head>
       <main className={styles.main}>
         <h1>ბლოგი</h1>
@@ -69,6 +72,7 @@ export default function Home({ postsArray, imgLink }) {
             href={`/posts/[heading]`}
             as={`/posts/${post.heading.split(" ").join("-")}`}
             key={post.id}
+            passHref
           >
             <article className="single-blog">
               <div>

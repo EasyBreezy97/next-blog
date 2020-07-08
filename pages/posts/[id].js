@@ -3,18 +3,21 @@ import Link from "next/link";
 import { getAllPosts } from "../../lib/db";
 import Layout from "../../components/layout";
 import parse from "html-react-parser";
-import { useState, useEffect } from "react";
 
 export async function getServerSideProps(context) {
   let posts = await getAllPosts();
 
   let parsedPosts = JSON.parse(posts);
 
-  // console.log('ctx query::',context.query)
+  let {host} =  context.req.headers;
+  let {url} = context.req;
+
+  let fullUrl =`${host}${url}`;
 
   let selectedPost = parsedPosts.filter(
     (post) => post.heading.split(" ").join("-") === context.query.id,
   );
+
 
   let imgRegex = /<img src\s*=\s*\\*"(.+?)\\*"\s*>/;
   let imgLink;
@@ -27,17 +30,12 @@ export async function getServerSideProps(context) {
     props: {
       selectedPost,
       imgLink,
+      fullUrl
     },
   };
 }
 
-export default function Post({ selectedPost, imgLink }) {
-  // console.log(selectedPost)
-  const [url, setUrl] = useState(null);
-  useEffect(() => {
-    setUrl(window.location.href);
-  }, []);
-
+export default function Post({ selectedPost, imgLink, fullUrl }) {
   return (
     <Layout>
       <Head>
@@ -45,13 +43,14 @@ export default function Post({ selectedPost, imgLink }) {
         <title>{selectedPost[0].heading}</title>
         <meta name="description" content={selectedPost[0].description}></meta>
         <meta name="robots" content="index, follow"></meta>
-        <meta property="og:url" content={url} />
+        <meta property="og:url" content={fullUrl} />
         <meta property="og:title" content={selectedPost[0].heading} />
         <meta property="og:description" content={selectedPost[0].description} />
       </Head>
       <section>
         {selectedPost.map((post) => (
           <div className="selected-post-container" key={post.id}>
+            {console.log(post.id)}
             <h1>{post.heading}</h1>
             <div>{parse(post.content)}</div>
             <div>

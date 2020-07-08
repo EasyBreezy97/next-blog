@@ -6,6 +6,7 @@ export default function Layout({ children,imgLink }) {
     <div>
       <Head>
       <meta name="language" content="ka" />
+      <meta property="og:type" content="website" />
       </Head>
       <div>{children}</div>
     </div>
