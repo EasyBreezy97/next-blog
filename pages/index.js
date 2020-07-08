@@ -14,7 +14,10 @@ export async function getServerSideProps(context) {
   let imgRegex = /<img src\s*=\s*\\*"(.+?)\\*"\s*>/;
   let imgLink;
   if (postsArray[0].content.match(imgRegex)) {
-    imgLink = postsArray[0].content.match(imgRegex)[1].split("alt")[0];
+    imgLink = postsArray[0].content.match(imgRegex)[1].split("alt")[0].slice(0,-1);
+    console.log(imgLink)
+    // imgLink = imgLink // trim last "
+
   } else {
     imgLink = null;
   }
@@ -42,9 +45,9 @@ export default function Home({ postsArray, imgLink }) {
   };
   return (
     <Layout imgLink={imgLink}>
-      {/* {console.log(imgLink)} */}
+      {console.log(imgLink)}
       <Head>
-        <title>Next js simple blog</title>
+        <title>Next js simple blog for search engine optimisation</title>
         <meta
           name="description"
           content="Blog builded on nextjs. react server side renderer"
@@ -56,7 +59,7 @@ export default function Home({ postsArray, imgLink }) {
           property="og:description"
           content="Blog builded on nextjs. react server side renderer"
         />
-        {imgLink && <meta property="og:image" content={imgLink} />}
+        {imgLink && <meta property="og:image" content = {imgLink} />}
       </Head>
       <main className={styles.main}>
         <h1>ბლოგი</h1>
