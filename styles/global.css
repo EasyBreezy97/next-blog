@@ -63,11 +63,11 @@ img {
   max-width: 100%;
 }
 .selected-post-container{
-  width: 60%;
+  width: 50%;
   margin: 0.5rem auto;
 }
 .selected-post-container img {
-  width: 100%;
+  max-width: 100%;
   display: block;
   margin: 0.5rem auto;
 }
