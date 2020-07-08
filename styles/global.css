@@ -13,6 +13,11 @@
   font-style: normal;
 }
 
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
+
 body {
   font-family: "Georgian", "Helvetica Neue", Helvetica, sans-serif;
   font-size: 1.1rem;
@@ -57,10 +62,14 @@ a {
 img {
   max-width: 100%;
 }
+.selected-post-container{
+  width: 60%;
+  margin: 0.5rem auto;
+}
 .selected-post-container img {
-  width: 25rem;
-  max-height: 25rem;
-  margin: 1rem 0;
+  width: 100%;
+  display: block;
+  margin: 0.5rem auto;
 }
 
 .post-id {
@@ -80,14 +89,10 @@ img {
   width: 100%;
 }
 .with-image div p {
-  width: 60%;
+  width: 70%;
 }
 
 @media only screen and (max-width: 992px) {
-  /* .with-image div p img {
-    max-width: 9rem;
-    max-height: 10rem;
-  } */
   .with-image div p {
     width: 60%;
   }
@@ -99,15 +104,39 @@ img {
 @media only screen and (max-width: 880px) {
   .with-image div p img {
     position: static;
-    max-width: 22rem;
-    max-height: 20rem;
+    max-width: 17rem;
+    max-height: 18rem;
     display: block;
   }
   .with-image div p {
     width: 100%;
   }
 
+
   img {
     max-width: 100%;
   }
+}
+
+@media only screen and (max-width: 600px) {
+  .post-heading{
+    display: block;
+    text-align: center;
+  }
+  p,.created_at{
+    margin:0.5rem;
+  }
+  .login-form{
+    padding: 1.5rem;
+  }
+
+  .dashboard-container button{
+    display: block;
+    width: 100%;
+  }
+  .selected-post-container{
+    width: 95%;
+    margin: auto;
+  }
+
 }

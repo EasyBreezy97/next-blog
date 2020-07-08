@@ -1,5 +1,5 @@
 .main article {
-  min-width: 30rem;
+  min-width: 17rem;
   max-width: 55rem;
 }
 
@@ -10,7 +10,7 @@
 .main article {
   margin: 0.7rem auto;
   position: relative;
-  width: 70%;
+  width: 100%;
   padding: 1rem;
   min-height: 220px;
   border-top: 1px solid #e8eae9;

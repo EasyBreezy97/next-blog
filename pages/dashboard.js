@@ -93,7 +93,7 @@ export default function Dashboard({ headingsArray }) {
           font-size: 1.7rem;
         }
         button {
-          margin: 0 0.5rem;
+          margin: 0.5rem;
         }
       `}</style>
     </div>

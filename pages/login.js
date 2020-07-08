@@ -1,6 +1,6 @@
 export default function Login() {
   return (
-    <form method="POST" action="api/login">
+    <form method="POST" action="api/login" className="login-form">
       <h2>ავტორიზაცია</h2>
       <input type="text" placeholder="username" name="username"></input>
       <input type="password" placeholder="password" name="password"></input>
@@ -11,8 +11,9 @@ export default function Login() {
             text-align: center;
             color: #0070f3;
           }
-          form {
+          .login-form {
             position: absolute;
+            padding:4rem;
             top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -20,12 +21,11 @@ export default function Login() {
             -moz-box-shadow: 3px 3px 5px 6px #eee;
             box-shadow: 3px 3px 5px 6px #eee;
             padding: 4rem;
-            margin: 1.2rem 0;
             border-radius: 1rem;
           }
           input {
             display: block;
-            margin: 1rem;
+            margin: 0.5rem 0;
             padding: 0.3rem;
           }
           input[type="submit"] {
@@ -37,6 +37,11 @@ export default function Login() {
           input[type="submit"]:hover {
             cursor: pointer;
             opacity: 0.8;
+          }
+          @media only screen and (max-width: 600px) {
+            .login-form{
+              padding: 1.5rem;
+            }
           }
         `}
       </style>

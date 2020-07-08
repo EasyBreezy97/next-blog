@@ -96,6 +96,8 @@ export default function Home({ postsArray, imgLink }) {
           }
           .single-blog {
             color: #777;
+            width:70%;
+            margin:0 auto;
           }
         `}</style>
       </main>
