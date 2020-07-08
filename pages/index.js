@@ -11,14 +11,17 @@ export async function getServerSideProps(context) {
   // console.log(posts);
   let postsArray = JSON.parse(posts);
 
+  let protocol = context.req.connection.encrypted ? 'https' : 'http';
   let {host} =  context.req.headers;
+
+
+  let fullUrl =`${protocol}://${host}/`;
 
   let imgRegex = /<img src\s*=\s*\\*"(.+?)\\*"\s*>/;
   let imgLink;
   if (postsArray[0].content.match(imgRegex)) {
     imgLink = postsArray[0].content.match(imgRegex)[1].split("alt")[0].slice(0,-1);
     console.log(imgLink)
-    // imgLink = imgLink // trim last "
 
   } else {
     imgLink = null;
@@ -28,12 +31,12 @@ export async function getServerSideProps(context) {
     props: {
       postsArray,
       imgLink,
-      host
+      fullUrl
     },
   };
 }
 
-export default function Home({ postsArray, imgLink,host }) {
+export default function Home({ postsArray, imgLink,fullUrl }) {
   useEffect(() => {
     imageHandler();
   }, []);
@@ -61,7 +64,7 @@ export default function Home({ postsArray, imgLink,host }) {
           content="Blog builded on nextjs. react server side renderer"
         />
         {imgLink && <meta property="og:image" content = {imgLink} />}
-        <meta property="og:url" content={host} />
+        <meta property="og:url" content={fullUrl} />
 
       </Head>
       <main className={styles.main}>

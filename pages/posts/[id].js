@@ -8,12 +8,13 @@ export async function getServerSideProps(context) {
   let posts = await getAllPosts();
 
   let parsedPosts = JSON.parse(posts);
-
+  let protocol = context.req.connection.encrypted ? 'https' : 'http';
   let {host} =  context.req.headers;
   let {url} = context.req;
 
-  let fullUrl =`${host}${url}`;
+  let fullUrl =`${protocol}://${host}${url}`;
 
+  console.log('ctx.referer::::::::;;;',context.req.headers.protocol)
   let selectedPost = parsedPosts.filter(
     (post) => post.heading.split(" ").join("-") === context.query.id,
   );
