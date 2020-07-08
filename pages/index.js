@@ -13,21 +13,21 @@ export async function getServerSideProps(context) {
 
   let imgRegex = /<img src\s*=\s*\\*"(.+?)\\*"\s*>/;
   let imgLink;
-  if(postsArray[0].content.match(imgRegex)){
-      imgLink = postsArray[0].content.match(imgRegex)[1].split("alt")[0];
-  }else{
-    imgLink =  null;
+  if (postsArray[0].content.match(imgRegex)) {
+    imgLink = postsArray[0].content.match(imgRegex)[1].split("alt")[0];
+  } else {
+    imgLink = null;
   }
 
   return {
     props: {
       postsArray,
-      imgLink
+      imgLink,
     },
   };
 }
 
-export default function Home({ postsArray,imgLink }) {
+export default function Home({ postsArray, imgLink }) {
   useEffect(() => {
     imageHandler();
   }, []);
@@ -44,9 +44,23 @@ export default function Home({ postsArray,imgLink }) {
     <Layout imgLink={imgLink}>
       {/* {console.log(imgLink)} */}
       <Head>
-        <title>Next blog</title>
+        <title>Next js simple blog</title>
+        <meta
+          name="description"
+          content="Blog builded on nextjs. react server side renderer"
+        />
+        <meta name="copyright" content="company name" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Next blog" />
+        <meta
+          property="og:description"
+          content="Blog builded on nextjs. react server side renderer"
+        />
+        {imgLink && <meta property="og:image" content={imgLink} />}
       </Head>
       <main className={styles.main}>
+        <h1>ბლოგი</h1>
+
         {postsArray.map((post) => (
           <Link
             href={`/posts/[heading]`}
@@ -56,7 +70,9 @@ export default function Home({ postsArray,imgLink }) {
             <article className="single-blog">
               <div>
                 <a className="post-heading">{post.heading}</a>
-                <div className="created_at">{post.created_at.split("T")[0]}</div>
+                <div className="created_at">
+                  {post.created_at.split("T")[0]}
+                </div>
 
                 {console.log(parse(post.content))}
                 {parse(post.content).length >= 1
@@ -67,15 +83,19 @@ export default function Home({ postsArray,imgLink }) {
           </Link>
         ))}
         <style jsx>{`
+        h1{
+          color:#0070f3;
+          text-align:center;
+        }
           .post-heading {
             font-size: 1.3rem;
           }
-          .created_at{
-            color:#282828;
-            margin-top:1rem;
+          .created_at {
+            color: #282828;
+            margin-top: 1rem;
           }
-          .single-blog{
-            color:#777;
+          .single-blog {
+            color: #777;
           }
         `}</style>
       </main>

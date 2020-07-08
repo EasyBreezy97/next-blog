@@ -1,4 +1,3 @@
-import {useState,useEffect} from 'react';
 import dynamic from "next/dynamic";
 import axios from "axios";
 
@@ -7,7 +6,6 @@ const Editor = dynamic(
   { ssr: false },
 );
 const EditPost = ({ headingsArray }) => {
-  const [chosenPost,setChosenPost] = useState(null)
 
 
   const getPost = async (e) => {
@@ -30,7 +28,6 @@ const EditPost = ({ headingsArray }) => {
       <h2>პოსტის რედაქტირება</h2>
       <form method="POST" className="put-form" action="api/put">
         <label>აირჩიეთ იმ პოსტის სათაური რომლის რედაქტირებაც გსურთ</label>
-        {/* <input type="number" name="id" required /> */}
         <select onChange={getPost} name="heading">
           <option>აირჩიეთ იმ პოსტის სათაური რომლის რედაქტირებაც გსურთ</option>
           {headingsArray.map((result) => (
