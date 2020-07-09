@@ -64,7 +64,7 @@ a {
 img {
   max-width: 100%;
 }
-.selected-post-container{
+.selected-post-container {
   width: 50%;
   margin: 0.5rem auto;
 }
@@ -72,6 +72,12 @@ img {
   max-width: 100%;
   display: block;
   margin: 0.5rem auto;
+}
+
+.single-blog {
+  color: #777;
+  width: 70%;
+  margin: 0 auto;
 }
 
 .post-id {
@@ -114,31 +120,32 @@ img {
     width: 100%;
   }
 
-
   img {
     max-width: 100%;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .post-heading{
+  .post-heading {
     display: block;
     text-align: center;
   }
-  p,.created_at{
-    margin:0.5rem;
+  p,
+  .created_at {
+    margin: 0.5rem;
   }
-  .login-form{
+  .login-form {
     padding: 1.5rem;
   }
 
-  .dashboard-container button{
+  .dashboard-container button {
     display: block;
     width: 100%;
   }
-  .selected-post-container{
-    width: 95%;
-    margin: auto;
+
+  .selected-post-container {
+    width: 90%;
   }
+
 
 }

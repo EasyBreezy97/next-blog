@@ -6,6 +6,7 @@ export default function Layout({ children, imgLink }) {
       <Head>
         <meta name="language" content="ka" />
         <meta property="og:type" content="website" />
+        <meta name="copyright" content="translate.ge" />
         <link rel="apple-touch-icon" href="apple-touch-iphone.png" />
         <link
           rel="apple-touch-icon"

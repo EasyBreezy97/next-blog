@@ -52,16 +52,16 @@ export default function Home({ postsArray, imgLink,fullUrl }) {
   return (
     <Layout imgLink={imgLink}>
       <Head>
-        <title>Next js simple blog for search engine optimisation</title>
+        <title>blog.translate.ge :: ბლოგი</title>
         <meta
           name="description"
-          content="Blog builded on nextjs. react server side renderer"
+          content="თრანსლეით ჯის ბლოგი"
         />
-        <meta name="copyright" content="company name" />
+        <meta name="copyright" content="translate.ge" />
         <meta property="og:title" content="Next blog" />
         <meta
           property="og:description"
-          content="Blog builded on nextjs. react server side renderer"
+          content="თრანსლეით ჯის ბლოგი"
         />
         {imgLink && <meta property="og:image" content = {imgLink} />}
         <meta property="og:url" content={fullUrl} />
@@ -107,7 +107,13 @@ export default function Home({ postsArray, imgLink,fullUrl }) {
           .single-blog {
             color: #777;
             width:70%;
-            margin:0 auto;
+            display:block;
+            margin:0.3rem auto;
+          }
+          @media only screen and (max-width: 600px) {
+            .single-blog {
+              width:90%;
+            }
           }
         `}</style>
       </main>
