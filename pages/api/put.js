@@ -2,7 +2,7 @@ import { updatePost, hasHeading } from "../../lib/db";
 export default async (req, res) => {
   let { heading, content, description } = req.body;
   // console.log(req.body);
-  console.log('HEADING::',heading)
+  // console.log('HEADING::',heading)
 
 
   if ( !heading[1] || !content || !description) {

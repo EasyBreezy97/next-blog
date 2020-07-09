@@ -9,7 +9,7 @@ import LogOut from "../components/logOut";
 
 export async function getServerSideProps() {
   let headings = await getPostHeadings();
-  console.log(headings);
+  // console.log(headings);
   let headingsArray = JSON.parse(headings);
 
   return {

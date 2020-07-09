@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
   let imgLink;
   if (postsArray[0].content.match(imgRegex)) {
     imgLink = postsArray[0].content.match(imgRegex)[1].split("alt")[0].slice(0,-1);
-    console.log(imgLink)
+    // console.log(imgLink)
 
   } else {
     imgLink = null;
@@ -84,7 +84,7 @@ export default function Home({ postsArray, imgLink,fullUrl }) {
                   {post.created_at.split("T")[0]}
                 </div>
 
-                {console.log(parse(post.content))}
+                {/* {console.log(parse(post.content))} */}
                 {parse(post.content).length >= 1
                   ? parse(post.content).slice(0, 3)
                   : parse(post.content)}

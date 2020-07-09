@@ -14,7 +14,6 @@ export async function getServerSideProps(context) {
 
   let fullUrl =`${protocol}://${host}${url}`;
 
-  console.log('ctx.referer::::::::;;;',context.req.headers.protocol)
   let selectedPost = parsedPosts.filter(
     (post) => post.heading.split(" ").join("-") === context.query.id,
   );
@@ -51,7 +50,7 @@ export default function Post({ selectedPost, imgLink, fullUrl }) {
       <section>
         {selectedPost.map((post) => (
           <div className="selected-post-container" key={post.id}>
-            {console.log(post.id)}
+            {/* {console.log(post.id)} */}
             <h1>{post.heading}</h1>
             <div>{parse(post.content)}</div>
             <div>

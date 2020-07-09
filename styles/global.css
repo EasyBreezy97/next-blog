@@ -4,6 +4,7 @@
   src: url(/fonts/55-Roman.2df6a3f8.woff2) format("woff2");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -11,6 +12,7 @@
   src: url(/fonts/75-Bold.99429b2d.woff2) format("woff2");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 .container {
@@ -104,8 +106,8 @@ img {
 @media only screen and (max-width: 880px) {
   .with-image div p img {
     position: static;
-    max-width: 17rem;
-    max-height: 18rem;
+    max-width: 70vw;
+    max-height: 40vh;
     display: block;
   }
   .with-image div p {
