@@ -58,7 +58,7 @@ export default function Home({ postsArray, imgLink,fullUrl }) {
           content="თრანსლეით ჯის ბლოგი"
         />
         <meta name="copyright" content="translate.ge" />
-        <meta property="og:title" content="Next blog" />
+        <meta property="og:title" content="blog.translate.ge" />
         <meta
           property="og:description"
           content="თრანსლეით ჯის ბლოგი"
