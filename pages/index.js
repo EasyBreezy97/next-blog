@@ -73,7 +73,7 @@ export default function Home({ postsArray, imgLink,fullUrl }) {
         {postsArray.map((post) => (
           <Link
             href={`/posts/[heading]`}
-            as={`/posts/${post.heading.split(" ").join("-")}`}
+            as={`/posts/${post.heading.split(" ").join("-").replace('?','%3F')}`}
             key={post.id}
             passHref
           >
