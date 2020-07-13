@@ -83,6 +83,8 @@ Editor.modules = {
       { indent: "-1" },
       { indent: "+1" },
     ],
+    [{ 'color': [] }, { 'background': [] }],
+
     ["link"],
     ["clean"],
   ],
@@ -115,6 +117,8 @@ Editor.formats = [
   "bullet",
   "indent",
   "link",
+  "color",
+  "background"
 ];
 
 export default Editor;
