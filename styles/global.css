@@ -64,21 +64,16 @@ a {
 img {
   max-width: 100%;
 }
-.selected-post-container {
+/* .selected-post-container {
   width: 50%;
   margin: 0.5rem auto;
-}
+} */
 .selected-post-container img {
   max-width: 100%;
   display: block;
   margin: 0.5rem auto;
 }
 
-.single-blog {
-  color: #777;
-  width: 70%;
-  margin: 0 auto;
-}
 
 .post-id {
   margin-top: 3rem;
@@ -130,10 +125,10 @@ img {
     display: block;
     text-align: center;
   }
-  p,
+  /* p,
   .created_at {
     margin: 0.5rem;
-  }
+  } */
   .login-form {
     padding: 1.5rem;
   }
@@ -142,10 +137,10 @@ img {
     display: block;
     width: 100%;
   }
-
+/*
   .selected-post-container {
     width: 90%;
-  }
+  } */
 
 
 }

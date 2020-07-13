@@ -3,10 +3,10 @@
 import { insertPost } from "../../lib/db";
 
 export default (req, res) => {
-  let { heading, content,description } = req.body;
-  // console.log(description)
-  // console.log(heading,content)
-  if (!heading || !content || !description) {
+  let { heading, content,description,img } = req.body;
+
+
+  if (!heading || !content || !description || !img) {
     res.status(405).json({
       msg: "ERROR, either heading  content or description is not specified",
     });

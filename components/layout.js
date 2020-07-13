@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 export default function Layout({ children, imgLink }) {
+
   return (
     <div>
       <Head>

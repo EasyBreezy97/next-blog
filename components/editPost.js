@@ -11,13 +11,16 @@ const EditPost = ({ headingsArray }) => {
   const getPost = async (e) => {
     try {
       let {data} = await axios.post("api/getPost", { heading: e.target.value });
+      console.log(data)
       let heading = document.querySelector(".blog-heading");
       let description = document.querySelector(".blog-description")
       let quill = document.querySelector(".ql-editor")
+      let blogImg = document.querySelector('.blog-img')
 
       heading.value = data.post.heading
       description.value = data.post.description
       quill.innerHTML  = data.post.content
+      blogImg.value = data.post.image
       console.log(data.post.heading)
     } catch (error) {
       console.log(error);
@@ -39,6 +42,10 @@ const EditPost = ({ headingsArray }) => {
 
         <label htmlFor="heading">განახლებული სათაური</label>
         <input type="text" name="heading" className="blog-heading" required />
+
+        <label htmlFor="blog-img">პოსტის განახლებული სურათის ბმული</label>
+        <input type="text" name="img" className="blog-img" required />
+
         <label htmlFor="content">განახლებული ბლოგ-პოსტი</label>
         <Editor />
         <label htmlFor="description">განახლებული პოსტის აღწერა</label>

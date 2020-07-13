@@ -12,6 +12,10 @@ const CreatePost = () => {
       <form method="POST" className="insert-form" action="api/insert">
         <label htmlFor="heading">სათაური</label>
         <input type="text" name="heading" className="blog-heading" required />
+
+        <label htmlFor="heading">პოსტის სურათის ბმული</label>
+        <input type="text" name="img" className="blog-img" required />
+
         <label htmlFor="content">ბლოგ-პოსტი</label>
         <Editor />
         <label htmlFor="description">პოსტის აღწერა</label>

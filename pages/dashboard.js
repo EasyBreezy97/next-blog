@@ -24,7 +24,7 @@ export default function Dashboard({ headingsArray }) {
   const [component, setComponent] = useState("create");
 
   useEffect(() => {
-    verifyToken();
+    // verifyToken();
   }, []);
 
   const verifyToken = async () => {
