@@ -51,7 +51,6 @@ export default function Post({ selectedPost, imgLink, fullUrl }) {
       <section>
         {selectedPost.map((post) => (
           <div className="selected-post-container" key={post.id}>
-
             {console.log(post)}
             <h1>{post.heading}</h1>
             <amp-img
@@ -63,7 +62,6 @@ export default function Post({ selectedPost, imgLink, fullUrl }) {
             />
             <div>{parse(post.content)}</div>
 
-
             <div>
               <Link href="/">
                 <a className="back-to-home">მთავარ გვერდზე დაბრუნება</a>
@@ -74,35 +72,38 @@ export default function Post({ selectedPost, imgLink, fullUrl }) {
 
         <style jsx>
           {`
-          @font-face {
-            font-family: "Georgian";
-            src: url(/fonts/55-Roman.2df6a3f8.woff2) format("woff2");
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-          }
+            @font-face {
+              font-family: "Georgian";
+              src: url(/fonts/55-Roman.2df6a3f8.woff2) format("woff2");
+              font-weight: 400;
+              font-style: normal;
+              font-display: swap;
+            }
 
-          @font-face {
-            font-family: "Georgian";
-            src: url(/fonts/75-Bold.99429b2d.woff2) format("woff2");
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-          }
+            @font-face {
+              font-family: "Georgian";
+              src: url(/fonts/75-Bold.99429b2d.woff2) format("woff2");
+              font-weight: 700;
+              font-style: normal;
+              font-display: swap;
+            }
 
-          a {
-            color: #0070f3;
-            text-decoration: none;
-            text-align: center;
-            display: block;
-          }
+            a {
+              color: #0070f3;
+              text-decoration: none;
+              text-align: center;
+              display: block;
+            }
+            a :hover {
+              opacity: 0.85;
+            }
 
-          section{
-            font-family: "Georgian", "Helvetica Neue", Helvetica, sans-serif;
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: #282828;
-          }
+            section {
+              font-family: "Georgian", "Helvetica Neue", Helvetica, sans-serif;
+              font-size: 1.1rem;
+              font-weight: 400;
+              color: #282828;
+            }
             h1 {
               font-size: 1.8rem;
               color: #0070f3;
@@ -118,14 +119,13 @@ export default function Post({ selectedPost, imgLink, fullUrl }) {
             }
 
             amp-img {
-              max-width:40rem;
-              margin:0 auto;
+              max-width: 40rem;
+              margin: 0 auto;
               height: auto;
-
             }
 
-            .back-to-home{
-              display:inline;
+            .back-to-home {
+              display: inline;
             }
 
             @media only screen and (max-width: 600px) {

@@ -58,7 +58,7 @@ export default function Home({ postsArray, imgLink, fullUrl }) {
         <title>blog.translate.ge :: ბლოგი</title>
         <meta name="description" content="თრანსლეით ჯის ბლოგი" />
         <meta name="copyright" content="translate.ge" />
-        <meta property="og:title" content="Next blog" />
+        <meta property="og:title" content="blog.translate.ge :: ბლოგი" />
         <meta property="og:description" content="თრანსლეით ჯის ბლოგი" />
         {imgLink && <meta property="og:image" content={imgLink} />}
         <meta property="og:url" content={fullUrl} />
@@ -78,33 +78,28 @@ export default function Home({ postsArray, imgLink, fullUrl }) {
                 key={post.id}
                 passHref
               >
-                <a className="post-heading">{post.heading}
-
-
-              <div className="created_at">
-                {post.created_at.split("T")[0]}
-                {console.log(post)}
-              </div>
-              {/* {console.log(parse(post.content))} */}
-              <div className="blog-container">
-              <div className="blog-img-container">
-                <amp-img
-                    width="5"
-                    height="5"
-                    src={post.image}
-                    alt="image"
-                    layout="responsive"
-                  />
-
-                </div>
-                <div className="blog-content-container">
-                {parse(post.content).length >= 1
-                    ? parse(post.content).slice(0, 1)
-                    : parse(post.content)}
-                </div>
-
-              </div>
-              </a>
+                <a className="post-heading">
+                  {post.heading}
+                  <div className="created_at">
+                    {post.created_at.split("T")[0]}
+                  </div>
+                  <div className="blog-container">
+                    <div className="blog-img-container">
+                      <amp-img
+                        width="5"
+                        height="5"
+                        src={post.image}
+                        alt="image"
+                        layout="responsive"
+                      />
+                    </div>
+                    <div className="blog-content-container">
+                      {parse(post.content).length >= 1
+                        ? parse(post.content).slice(0, 1)
+                        : parse(post.content)}
+                    </div>
+                  </div>
+                </a>
               </Link>
             </div>
           </article>
@@ -134,10 +129,9 @@ export default function Home({ postsArray, imgLink, fullUrl }) {
             font-size: 1.1rem;
             font-weight: 400;
           }
-          p{
-            margin-top:0
+          p {
+            margin-top: 0;
           }
-
 
           .single-blog {
             margin: 0.7rem auto;
@@ -149,7 +143,6 @@ export default function Home({ postsArray, imgLink, fullUrl }) {
             border-bottom: 1px solid #e8eae9;
             font-size: 1rem;
             margin: 0.7rem auto;
-
           }
           .single-blog:hover {
             cursor: pointer;
@@ -160,32 +153,31 @@ export default function Home({ postsArray, imgLink, fullUrl }) {
 
           amp-img {
             max-width: 18rem;
-            max-height:18rem;
+            max-height: 18rem;
           }
           p,
           .created_at {
             margin: 0.5rem 0;
-            font-size:1rem;
+            font-size: 1rem;
           }
 
           .blog-container {
-            color:#282828;
+            color: #282828;
             display: grid;
             grid-template-columns: 3fr 1fr;
-            grid-column-gap:1rem;
-            color:#282828;
-
+            grid-column-gap: 1rem;
+            color: #282828;
           }
           .blog-container > * {
-            font-size:1rem;
+            font-size: 1rem;
           }
 
-          .blog-content-container{
-            order:1;
-           color: #282828;
+          .blog-content-container {
+            order: 1;
+            color: #282828;
           }
-          .blog-img-container{
-            order:2;
+          .blog-img-container {
+            order: 2;
           }
 
           h1 {
@@ -207,20 +199,19 @@ export default function Home({ postsArray, imgLink, fullUrl }) {
           }
           @media only screen and (max-width: 880px) {
             .blog-container {
-              display:block;
+              display: block;
             }
-            amp-img{
-              margin:0 auto;
+            amp-img {
+              margin: 0 auto;
             }
 
-            .post-heading{
-              display:block;
+            .post-heading {
+              display: block;
               text-align: center;
             }
-            .created_at,.blog-content{
-              text-align:left;
+            .blog-content {
+              text-align: left;
             }
-
           }
           @media only screen and (max-width: 600px) {
             .single-blog {

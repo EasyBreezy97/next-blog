@@ -83,7 +83,7 @@ Editor.modules = {
       { indent: "-1" },
       { indent: "+1" },
     ],
-    ["link", "image", "video"],
+    ["link"],
     ["clean"],
   ],
   clipboard: {
@@ -115,8 +115,6 @@ Editor.formats = [
   "bullet",
   "indent",
   "link",
-  "image",
-  "video",
 ];
 
 export default Editor;
