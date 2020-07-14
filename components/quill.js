@@ -54,7 +54,7 @@ function Editor() {
   };
   return (
     <>
-      <CustomButton />
+      {/* <CustomButton /> */}
       <ReactQuill
         theme={theme}
         value={editorHtml}

@@ -1,27 +1,33 @@
 import dynamic from "next/dynamic";
 import axios from "axios";
+import { useState } from "react";
 
 const Editor = dynamic(
   () => import("../components/quill").then((mod) => mod.default),
   { ssr: false },
 );
 const EditPost = ({ headingsArray }) => {
-
+  const [headingCount, setHeadingCount] = useState(0);
+  const [descriptionCount, setDescriptionCount] = useState(0);
 
   const getPost = async (e) => {
     try {
-      let {data} = await axios.post("api/getPost", { heading: e.target.value });
-      console.log(data)
+      let { data } = await axios.post("api/getPost", {
+        heading: e.target.value,
+      });
+      console.log(data);
       let heading = document.querySelector(".blog-heading");
-      let description = document.querySelector(".blog-description")
-      let quill = document.querySelector(".ql-editor")
-      let blogImg = document.querySelector('.blog-img')
+      let description = document.querySelector(".blog-description");
+      let quill = document.querySelector(".ql-editor");
+      let blogImg = document.querySelector(".blog-img");
 
-      heading.value = data.post.heading
-      description.value = data.post.description
-      quill.innerHTML  = data.post.content
-      blogImg.value = data.post.image
-      console.log(data.post.heading)
+      heading.value = data.post.heading;
+      setHeadingCount(heading.value.length);
+      description.value = data.post.description;
+      setDescriptionCount(description.value.length);
+      quill.innerHTML = data.post.content;
+      blogImg.value = data.post.image;
+      console.log(data.post.heading);
     } catch (error) {
       console.log(error);
     }
@@ -40,16 +46,33 @@ const EditPost = ({ headingsArray }) => {
           ))}
         </select>
 
-        <label htmlFor="heading">განახლებული სათაური</label>
-        <input type="text" name="heading" className="blog-heading" required />
+        <label htmlFor="heading">განახლებული სათაური (მაქს. 255 სიმბოლო)</label>
+        <div className="symbolCount">გამოყენებულია {headingCount} სიმბოლო</div>
+        <input
+          onChange={(e) => setHeadingCount(e.target.value.length)}
+          type="text"
+          name="heading"
+          className="blog-heading"
+          required
+        />
 
         <label htmlFor="blog-img">პოსტის განახლებული სურათის ბმული</label>
         <input type="text" name="img" className="blog-img" required />
 
         <label htmlFor="content">განახლებული ბლოგ-პოსტი</label>
         <Editor />
-        <label htmlFor="description">განახლებული პოსტის აღწერა</label>
+        <label htmlFor="description">
+          განახლებული პოსტის აღწერა (მაქს. 255 სიმბოლო)
+        </label>
+        <div
+          className="symbolCount"
+          onChange={(e) => setDescriptionCount(e.target.value.length)}
+        >
+          გამოყენებულია {descriptionCount} სიმბოლო
+        </div>
+
         <input
+          onChange={(e) => setDescriptionCount(e.target.value.length)}
           type="text"
           name="description"
           className="blog-description"
@@ -65,6 +88,10 @@ const EditPost = ({ headingsArray }) => {
           padding: 1rem;
           margin: 1.2rem 0;
           border-radius: 1rem;
+        }
+        .symbolCount {
+          text-align: center;
+          font-weight: bold;
         }
         input[type="text"],
         input[type="number"],

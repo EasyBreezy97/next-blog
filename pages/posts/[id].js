@@ -18,17 +18,9 @@ export async function getServerSideProps(context) {
     (post) => post.heading.split(" ").join("-") === context.query.id,
   );
 
-  let imgRegex = /<img src\s*=\s*\\*"(.+?)\\*"\s*>/;
-  let imgLink;
-  if (selectedPost[0].content.match(imgRegex)) {
-    imgLink = selectedPost[0].content.match(imgRegex)[1].split("alt")[0];
-  } else {
-    imgLink = null;
-  }
   return {
     props: {
       selectedPost,
-      imgLink,
       fullUrl,
     },
   };
@@ -36,11 +28,11 @@ export async function getServerSideProps(context) {
 
 export const config = { amp: true };
 
-export default function Post({ selectedPost, imgLink, fullUrl }) {
+export default function Post({ selectedPost, fullUrl }) {
   return (
     <Layout>
       <Head>
-        {imgLink && <meta property="og:image" content={imgLink} />}
+        <meta property="og:image" content={selectedPost[0].image} />
         <title>{selectedPost[0].heading}</title>
         <meta name="description" content={selectedPost[0].description}></meta>
         <meta name="robots" content="index, follow"></meta>
@@ -103,6 +95,9 @@ export default function Post({ selectedPost, imgLink, fullUrl }) {
               font-size: 1.1rem;
               font-weight: 400;
               color: #282828;
+            }
+            main:focus{
+              outline:none;
             }
             h1 {
               font-size: 1.8rem;

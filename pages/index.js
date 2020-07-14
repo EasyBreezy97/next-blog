@@ -8,7 +8,6 @@ import styles from "./index.module.css";
 
 export async function getServerSideProps(context) {
   let posts = await getAllPosts();
-  // console.log(posts);
   let postsArray = JSON.parse(posts);
 
   let protocol = context.req.connection.encrypted ? "https" : "http";
@@ -16,22 +15,9 @@ export async function getServerSideProps(context) {
 
   let fullUrl = `${protocol}://${host}/`;
 
-  let imgRegex = /<img src\s*=\s*\\*"(.+?)\\*"\s*>/;
-  let imgLink;
-  if (postsArray[0].content.match(imgRegex)) {
-    imgLink = postsArray[0].content
-      .match(imgRegex)[1]
-      .split("alt")[0]
-      .slice(0, -1);
-    // console.log(imgLink)
-  } else {
-    imgLink = null;
-  }
-
   return {
     props: {
       postsArray,
-      imgLink,
       fullUrl,
     },
   };
@@ -39,28 +25,16 @@ export async function getServerSideProps(context) {
 
 export const config = { amp: true };
 
-export default function Home({ postsArray, imgLink, fullUrl }) {
-  useEffect(() => {
-    imageHandler();
-  }, []);
-  const imageHandler = () => {
-    const blogs = document.querySelectorAll(".single-blog");
-
-    for (let i = 0; i < blogs.length; ++i) {
-      if (blogs[i].getElementsByTagName("img").length !== 0) {
-        blogs[i].classList.add("with-image");
-      }
-    }
-  };
+export default function Home({ postsArray, fullUrl }) {
   return (
-    <Layout imgLink={imgLink}>
+    <Layout>
       <Head>
         <title>blog.translate.ge :: ბლოგი</title>
         <meta name="description" content="თრანსლეით ჯის ბლოგი" />
         <meta name="copyright" content="translate.ge" />
         <meta property="og:title" content="blog.translate.ge :: ბლოგი" />
         <meta property="og:description" content="თრანსლეით ჯის ბლოგი" />
-        {imgLink && <meta property="og:image" content={imgLink} />}
+        <meta property="og:image" content={postsArray[0].image} />
         <meta property="og:url" content={fullUrl} />
       </Head>
       <main className={styles.main}>
@@ -95,7 +69,7 @@ export default function Home({ postsArray, imgLink, fullUrl }) {
                     </div>
                     <div className="blog-content-container">
                       {parse(post.content).length >= 1
-                        ? parse(post.content).slice(0, 1)
+                        ? parse(post.content).slice(0, 2)
                         : parse(post.content)}
                     </div>
                   </div>
@@ -150,6 +124,10 @@ export default function Home({ postsArray, imgLink, fullUrl }) {
             transition: 0.15s all;
             border-color: #ccc;
           }
+          .single-blog:last-child{
+            margin-bottom:1rem;
+          }
+
 
           amp-img {
             max-width: 18rem;
@@ -180,6 +158,10 @@ export default function Home({ postsArray, imgLink, fullUrl }) {
             order: 2;
           }
 
+          .created_at{
+            margin-bottom:0;
+          }
+
           h1 {
             color: #0070f3;
             text-align: center;
@@ -203,6 +185,10 @@ export default function Home({ postsArray, imgLink, fullUrl }) {
             }
             amp-img {
               margin: 0 auto;
+            }
+
+            .created_at{
+              margin: 0.5rem 0;
             }
 
             .post-heading {
